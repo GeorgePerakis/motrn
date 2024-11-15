@@ -13,6 +13,6 @@ public class PrimaryController {
 
     @FXML
     private void WriteTest() throws IOException {
-        userDAO.addUser("Test2","Pass2");
+        userDAO.addUser("Test3","Pass3");
     }
 }
