@@ -5,4 +5,6 @@ module shiven {
 
     opens shiven to javafx.fxml;
     exports shiven;
+    exports shiven.Controllers;
+    opens shiven.Controllers to javafx.fxml;
 }

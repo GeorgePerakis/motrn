@@ -1,4 +1,4 @@
-package shiven;
+package shiven.DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.LoginController">
    <children>
       <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="LOGIN" />
-            <MFXTextField floatMode="BORDER" floatingText="Username" prefHeight="9.0" prefWidth="270.0" />
-            <MFXPasswordField blendMode="SRC_ATOP" caretVisible="false" floatMode="BORDER" floatingText="Password" prefHeight="8.0" prefWidth="270.0" textLimit="0">
+            <MFXTextField fx:id="UsernameField" floatMode="BORDER" floatingText="Username" prefHeight="9.0" prefWidth="270.0" />
+            <MFXPasswordField fx:id="PasswordField" blendMode="SRC_ATOP" caretVisible="false" floatMode="BORDER" floatingText="Password" prefHeight="8.0" prefWidth="270.0" textLimit="0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>

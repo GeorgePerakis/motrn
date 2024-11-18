@@ -1,8 +1,9 @@
-package shiven;
+package shiven.Controllers;
 
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import shiven.App;
 
 public class RegisterController {
 
