@@ -106,7 +106,7 @@
                                   <TableColumn prefWidth="150.40002745389938" text="Name" />
                                   <TableColumn minWidth="0.0" prefWidth="194.4000701904297" text="Email" />
                                     <TableColumn prefWidth="209.599853515625" text="Phone number" />
-                                    <TableColumn prefWidth="230.4000244140625" text="Dick Size" />
+                                    <TableColumn prefWidth="230.4000244140625" text="Subscription" />
                                 </columns>
                               </TableView>
                               <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Add New Member" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />

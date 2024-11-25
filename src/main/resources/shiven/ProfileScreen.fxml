@@ -96,44 +96,25 @@
          </left>
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                <Tab text="Members">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
+               <tabs>
+                  <Tab text="Personal Info">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
                            <children>
                               <TableView layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TableColumn prefWidth="150.40002745389938" text="Name" />
-                                  <TableColumn minWidth="0.0" prefWidth="194.4000701904297" text="Email" />
-                                    <TableColumn prefWidth="209.599853515625" text="Phone number" />
-                                    <TableColumn prefWidth="230.4000244140625" text="Subscription" />
-                                </columns>
+                                 <columns>
+                                    <TableColumn prefWidth="173.59997862577438" text="Username" />
+                                    <TableColumn minWidth="0.0" prefWidth="189.59996032714844" text="Email" />
+                                    <TableColumn prefWidth="207.2000732421875" text="Trainers" />
+                                    <TableColumn prefWidth="220.0" text="Subscription" />
+                                 </columns>
                               </TableView>
-                              <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Add New Member" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
+                              <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
                            </children>
                         </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab text="Admins">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <BorderPane prefHeight="613.0" prefWidth="786.0">
-                                 <center>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FCF6F5FF;" BorderPane.alignment="CENTER">
-                                       <columns>
-                                          <TableColumn prefWidth="150.40002745389938" text="Name" />
-                                          <TableColumn minWidth="0.0" prefWidth="194.4000701904297" text="Email" />
-                                          <TableColumn prefWidth="209.599853515625" text="Phone number" />
-                                          <TableColumn prefWidth="230.4000244140625" text="Dick Size" />
-                                       </columns>
-                                    </TableView>
-                                 </center>
-                              </BorderPane>
-                           </children></AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
+                     </content>
+                  </Tab>
+               </tabs>
             </TabPane>
          </center>
       </BorderPane>
