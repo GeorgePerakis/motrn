@@ -25,9 +25,9 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #FCF6F5FF;" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="101.0" layoutY="174.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #9E1030FF; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField layoutX="101.0" layoutY="222.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #9E1030FF; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="135.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: #9E1030FF;" text="Login" textFill="WHITE">
+            <TextField fx:id="LoginUsername" layoutX="101.0" layoutY="174.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #9E1030FF; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="LoginPassword" layoutX="101.0" layoutY="222.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #9E1030FF; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button layoutX="135.0" layoutY="292.0" mnemonicParsing="false" onAction="#InitializeLogin" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: #9E1030FF;" text="Login" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

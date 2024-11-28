@@ -40,6 +40,40 @@ public class Authorization {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;  // Username not found
+        return false;  
+    }
+
+    public static boolean check_password(String username,String password) {
+        String query = "{CALL dynamic_get_pass(?, ?, ?, ?, ?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+    
+            callableStatement.setString(1, "userTable"); 
+            callableStatement.setString(2, "name");   
+            callableStatement.setString(3, "pass");   
+            
+            String condition = "= " + "'" + username + "'"  ;  
+
+
+            callableStatement.setString(4, condition); 
+    
+            callableStatement.registerOutParameter(5, OracleTypes.CURSOR);
+    
+            callableStatement.execute();
+    
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(5);
+    
+            while (resultSet.next()) {
+                String retrievedPassword = resultSet.getString("PASSWORD");
+    
+                if (retrievedPassword.equals(password)) {
+                    return true; 
+                }
+            }
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;  
     }
 }

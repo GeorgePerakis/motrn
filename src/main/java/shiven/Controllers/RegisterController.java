@@ -35,10 +35,10 @@ public class RegisterController {
         {
             UserDAO userdao = new UserDAO();
             userdao.addUser(Username, Password);
-            Tools.Make_Success_Alert("Success", "User made successfully", "Redirecting to home page");
+            Tools.Make_Success_Alert("Success", "User made successfully", "Redirecting to Login");
 
             try {
-                App.setRoot("HomeScreen");
+                App.setRoot("Login");
             } catch (Exception e) {
                 e.printStackTrace();
             }
