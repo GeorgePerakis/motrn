@@ -2,10 +2,9 @@ package shiven.Controllers;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import shiven.App;
 import shiven.DB.DAOS.UserDAO;
-import shiven.Utility.Authorization;
-import javafx.fxml.FXML;
 
 public class LoginController {
     UserDAO userDAO = new UserDAO();
@@ -15,9 +14,4 @@ public class LoginController {
         App.setRoot("Register");
     }
 
-    @FXML
-    private void WriteTest() throws IOException {
-        userDAO.addUser("Test6","Pass6");
-        Authorization.authenticate("null", "null");
-    }
 }

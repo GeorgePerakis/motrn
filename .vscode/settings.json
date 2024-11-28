@@ -1,3 +1,14 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
-}
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Launch Java Program",
+        "request": "launch",
+        "mainClass": "App",
+        "vmArgs": "-cp \"${workspaceFolder}/libs/ojdbc8.jar\"",
+        "console": "internalConsole"
+      }
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
+  }
