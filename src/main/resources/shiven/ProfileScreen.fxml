@@ -1,122 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane prefHeight="711.0" prefWidth="984.0">
-         <top>
-            <HBox prefHeight="70.0" prefWidth="984.0" style="-fx-background-color: #9E1030FF;" BorderPane.alignment="CENTER">
+<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.ProfileController">
+   <tabs>
+      <Tab text="Personal Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
                <children>
-                  <ImageView fitHeight="70.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/logo3.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="70.0" prefWidth="114.0" text="Shiva Gym" textFill="WHITE">
-                     <font>
-                        <Font name="DejaVu Serif Bold" size="18.0" />
-                     </font>
-                  </Label>
+                  <TableView fx:id="UserTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="UsernameCol" prefWidth="173.59997862577438" text="Username" />
+                        <TableColumn fx:id="SubCol" prefWidth="220.0" text="Subscription" />
+                        <TableColumn fx:id="TrainersCol" prefWidth="207.2000732421875" text="Trainer" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
                </children>
-            </HBox>
-         </top>
-         <left>
-            <VBox prefHeight="630.0" prefWidth="199.0" style="-fx-background-color: #DD4132FF;" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" style="-fx-background-color: #DD4132FF;" text="Home" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" style="-fx-background-color: #DD4132FF;" text="Profile" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/profile.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" style="-fx-background-color: #DD4132FF;" text="Users" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/users.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Button>
-               </children>
-            </VBox>
-         </left>
-         <center>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-               <tabs>
-                  <Tab text="Personal Info">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
-                           <children>
-                              <TableView layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
-                                 <columns>
-                                    <TableColumn prefWidth="173.59997862577438" text="Username" />
-                                    <TableColumn minWidth="0.0" prefWidth="189.59996032714844" text="Email" />
-                                    <TableColumn prefWidth="207.2000732421875" text="Trainers" />
-                                    <TableColumn prefWidth="220.0" text="Subscription" />
-                                 </columns>
-                              </TableView>
-                              <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

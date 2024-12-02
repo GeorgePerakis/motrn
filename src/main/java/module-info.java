@@ -7,5 +7,6 @@ module shiven {
     exports shiven;
     exports shiven.Controllers;
     opens shiven.Controllers to javafx.fxml;
+    opens shiven.DB to javafx.base;
 }
 

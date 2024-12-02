@@ -1,0 +1,9 @@
+.button {
+    -fx-opacity: 1.0; /* Set normal opacity */
+    -fx-transition: opacity 0.2s ease; /* Smooth transition */
+}
+
+/* Hover effect - reduce opacity when mouse enters */
+.button:hover {
+    -fx-opacity: 0.5; /* Lower opacity to 50% on hover */
+}

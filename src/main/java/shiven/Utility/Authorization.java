@@ -11,7 +11,7 @@ import shiven.DB.DatabaseConnection;
 public class Authorization {
 
     public static boolean check_username(String username) {
-        String query = "{CALL dynamic_get_user(?, ?, ?, ?)}";
+        String query = "{CALL dynamic_auth_user(?, ?, ?, ?)}";
         try (Connection connection = DatabaseConnection.getConnection(); 
              CallableStatement callableStatement = connection.prepareCall(query)) {
     

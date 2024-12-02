@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.UsersController">
+   <tabs>
+      <Tab text="Members">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
+               <children>
+                  <TableView fx:id="membersTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="membersNameCol" prefWidth="150.40002745389938" text="Name" />
+                        <TableColumn fx:id="membersTrainerCol" minWidth="0.0" prefWidth="194.4000701904297" text="Trainer" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Add New Member" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Trainers">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane prefHeight="613.0" prefWidth="786.0">
+                     <center>
+                        <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FCF6F5FF;" BorderPane.alignment="CENTER">
+                           <columns>
+                              <TableColumn prefWidth="150.40002745389938" text="Name" />
+                              <TableColumn minWidth="0.0" prefWidth="194.4000701904297" text="Email" />
+                              <TableColumn prefWidth="209.599853515625" text="Phone number" />
+                              <TableColumn prefWidth="230.4000244140625" text="Dick Size" />
+                           </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

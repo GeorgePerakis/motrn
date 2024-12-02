@@ -2,16 +2,18 @@ package shiven.Controllers;
 
 import java.io.IOException;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import shiven.App;
 import shiven.DB.DAOS.UserDAO;
 import shiven.Utility.Authorization;
 import shiven.Utility.Tools;
 
-public class RegisterController {
+public class RegisterController{
     @FXML
     private PasswordField RegisterPassword;
 
@@ -44,7 +46,7 @@ public class RegisterController {
             }
             
         }
-        else Tools.Make_Error_Alert("Invadlid Username", "Please enter a valid username", "User: "+ Username + " already exists");
+        else Tools.Make_Error_Alert("Invadlid Username", "Please enter a valid username", "User "+ Username + " already exists");
     }
 
     @FXML
