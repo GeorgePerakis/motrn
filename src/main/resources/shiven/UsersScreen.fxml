@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.UsersController">
+<TabPane prefHeight="634.0" prefWidth="881.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.UsersController">
    <tabs>
       <Tab text="Members">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
                <children>
-                  <TableView fx:id="membersTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="membersTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" stylesheets="@Style.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="membersNameCol" prefWidth="150.40002745389938" text="Name" />
                         <TableColumn fx:id="membersTrainerCol" minWidth="0.0" prefWidth="194.4000701904297" text="Trainer" />
@@ -29,14 +29,14 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <BorderPane prefHeight="613.0" prefWidth="786.0">
+                  <BorderPane layoutX="-6.0" prefHeight="605.6" prefWidth="881.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <center>
-                        <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FCF6F5FF;" BorderPane.alignment="CENTER">
+                        <TableView prefHeight="593.0" prefWidth="882.0" style="-fx-background-color: #FCF6F5FF;" BorderPane.alignment="CENTER">
                            <columns>
                               <TableColumn prefWidth="150.40002745389938" text="Name" />
-                              <TableColumn minWidth="0.0" prefWidth="194.4000701904297" text="Email" />
-                              <TableColumn prefWidth="209.599853515625" text="Phone number" />
-                              <TableColumn prefWidth="230.4000244140625" text="Dick Size" />
+                              <TableColumn minWidth="0.0" prefWidth="244.7999725341797" text="Email" />
+                              <TableColumn prefWidth="205.5999755859375" text="Phone number" />
+                              <TableColumn prefWidth="280.7999267578125" text="Specialty" />
                            </columns>
                         </TableView>
                      </center>
@@ -44,6 +44,23 @@
                </children>
             </AnchorPane>
          </content>
+      </Tab>
+      <Tab text="Groups">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView prefHeight="606.0" prefWidth="881.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="154.40002745389938" text="TRX" />
+                      <TableColumn prefWidth="171.19993591308594" text="Crossfit" />
+                        <TableColumn prefWidth="174.4000244140625" text="Pilates" />
+                        <TableColumn prefWidth="204.8001708984375" text="Kick Boxing" />
+                        <TableColumn prefWidth="174.39990234375" text="Group Training" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
       </Tab>
    </tabs>
 </TabPane>

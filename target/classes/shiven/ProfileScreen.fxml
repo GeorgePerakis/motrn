@@ -1,29 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.ProfileController">
+<TabPane prefHeight="669.0" prefWidth="939.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiven.Controllers.ProfileController">
    <tabs>
       <Tab text="Personal Info">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
                <children>
-                  <TableView fx:id="UserTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="UserTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" stylesheets="@Style.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="UsernameCol" prefWidth="173.59997862577438" text="Username" />
-                        <TableColumn fx:id="SubCol" prefWidth="220.0" text="Subscription" />
-                        <TableColumn fx:id="TrainersCol" prefWidth="207.2000732421875" text="Trainer" />
+                        <TableColumn fx:id="UsernameCol" prefWidth="193.59998166561127" text="Username" />
+                        <TableColumn fx:id="SubCol" prefWidth="244.79998779296875" text="Subscription" />
+                        <TableColumn fx:id="TrainersCol" prefWidth="245.60000610351562" text="Trainer" />
                      </columns>
                   </TableView>
                   <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
                </children>
             </AnchorPane>
          </content>
+      </Tab>
+      <Tab text="Settings">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FCF6F5FF;">
+               <children>
+                  <Text fill="#9e1030" layoutX="57.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chose your subscription:" wrappingWidth="262.9367141723633">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <CheckBox layoutX="342.0" layoutY="112.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="104.0" text="TRX">
+                     <font>
+                        <Font size="13.0" />
+                     </font></CheckBox>
+                  <CheckBox layoutX="654.0" layoutY="112.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="122.0" text="Group Training">
+                     <font>
+                        <Font size="13.0" />
+                     </font></CheckBox>
+                  <CheckBox layoutX="550.0" layoutY="112.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="104.0" text="Kick Boxing">
+                     <font>
+                        <Font size="13.0" />
+                     </font></CheckBox>
+                  <CheckBox layoutX="446.0" layoutY="112.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="104.0" text="Crossfit">
+                     <font>
+                        <Font size="13.0" />
+                     </font></CheckBox>
+                  <Text fill="#9e1030" layoutX="57.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chose a trainer:" wrappingWidth="262.9367141723633">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <ComboBox layoutX="320.0" layoutY="204.0" prefWidth="150.0" promptText="Select here" />
+               </children>
+            </AnchorPane>
+        </content>
       </Tab>
    </tabs>
 </TabPane>
