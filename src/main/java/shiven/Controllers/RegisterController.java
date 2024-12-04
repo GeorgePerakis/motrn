@@ -40,11 +40,11 @@ public class RegisterController{
         if (!User_Exists)
         {
             UserDAO userdao = new UserDAO();
-            userdao.addUser(Username, Password, trainerCheck.isSelected());
+            userdao.addUser(Username, Password);
             
             if(trainerCheck.isSelected())
             {
-               userdao.addUser(Username, Password, trainerCheck.isSelected()); 
+               userdao.addTrainer(Username); 
             }
             
             Tools.Make_Success_Alert("Success", "User made successfully", "Redirecting to Login");

@@ -11,23 +11,17 @@ import shiven.DB.DatabaseConnection;
 public class Authorization {
 
     public static boolean check_username(String username) {
-        String query = "{CALL dynamic_auth_user(?, ?, ?, ?)}";
+        String query = "{CALL dynamic_auth_user(?, ?)}";
         try (Connection connection = DatabaseConnection.getConnection(); 
              CallableStatement callableStatement = connection.prepareCall(query)) {
     
-            callableStatement.setString(1, "userTable"); 
-            callableStatement.setString(2, "name");   
-            
-            String condition = "= " + "'" + username + "'"  ;  
-
-
-            callableStatement.setString(3, condition); 
+            callableStatement.setString(1, username);   
     
-            callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
     
             callableStatement.execute();
     
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(4);
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
     
             while (resultSet.next()) {
                 String retrievedUsername = resultSet.getString("USERNAME");
@@ -44,24 +38,17 @@ public class Authorization {
     }
 
     public static boolean check_password(String username,String password) {
-        String query = "{CALL dynamic_get_pass(?, ?, ?, ?, ?)}";
+        String query = "{CALL dynamic_get_pass(?, ?)}";
         try (Connection connection = DatabaseConnection.getConnection(); 
              CallableStatement callableStatement = connection.prepareCall(query)) {
     
-            callableStatement.setString(1, "userTable"); 
-            callableStatement.setString(2, "name");   
-            callableStatement.setString(3, "pass");   
-            
-            String condition = "= " + "'" + username + "'"  ;  
-
-
-            callableStatement.setString(4, condition); 
+            callableStatement.setString(1, username);
     
-            callableStatement.registerOutParameter(5, OracleTypes.CURSOR);
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
     
             callableStatement.execute();
     
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(5);
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
     
             while (resultSet.next()) {
                 String retrievedPassword = resultSet.getString("PASSWORD");

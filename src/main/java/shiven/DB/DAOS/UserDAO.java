@@ -15,23 +15,18 @@ import shiven.DB.User;
 public class UserDAO {
 
     public User getUser(String username) {
-        String query = "{CALL dynamic_get_user(?, ?, ?, ?)}";
+        String query = "{CALL dynamic_get_user(?, ?)}";
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
 
-            callableStatement.setString(1, "userTable");
-            callableStatement.setString(2, "name");
+            callableStatement.setString(1, username);
 
-            String condition = "= " + "'" + username + "'";
-
-            callableStatement.setString(3, condition);
-
-            callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
 
             callableStatement.execute();
 
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(4);
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
             while (resultSet.next()) {
-                User extracted_User = new User(resultSet.getString("USERNAME"), resultSet.getString("SUBSCRIPTION"), resultSet.getString("IS_TRAINER"));
+                User extracted_User = new User(resultSet.getString("USERNAME"), "","");
                 return extracted_User;
             }
 
@@ -43,23 +38,19 @@ public class UserDAO {
     }
 
     public List<User> getAllUsers() {
-        String query = "{CALL dynamic_get_all_users(?, ?)}";
+        String query = "{CALL dynamic_get_all_users(?)}";
         List<User> UserList = new ArrayList<User>();
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
 
-            callableStatement.setString(1, "userTable");
-
-            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
 
             callableStatement.execute();
 
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
 
             while (resultSet.next()) {
                 User extractedUser = new User(
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("SUBSCRIPTION"),
-                        resultSet.getString("IS_TRAINER")
+                        resultSet.getString("USERNAME"),"",""
                 );
                 if (extractedUser != null) {
                     UserList.add(extractedUser);
@@ -72,18 +63,26 @@ public class UserDAO {
         }
     }
 
-    public void addUser(String username, String password, boolean isTrainer) {
-        String query = "{CALL dynamic_insert_user(?, ?, ?, ?, ?, ?, ?)}"; 
+    public void addUser(String username, String password) {
+        String query = "{CALL dynamic_insert_user(?, ?)}"; 
+        try (Connection connection = DatabaseConnection.getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query)) {  
+            callableStatement.setString(1, username);  
+            callableStatement.setString(2, password);
+    
+            callableStatement.execute();
+    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addTrainer(String username) {
+        String query = "{CALL dynamic_insert_trainer(?)}"; 
         try (Connection connection = DatabaseConnection.getConnection();
              CallableStatement callableStatement = connection.prepareCall(query)) {
 
-            callableStatement.setString(1, "userTable"); 
-            callableStatement.setString(2, "name");    
-            callableStatement.setString(3, "pass");     
-            callableStatement.setString(4, "train");    
-            callableStatement.setString(5, username);  
-            callableStatement.setString(6, password);   
-            callableStatement.setInt(7, isTrainer ? 1 : 0); 
+            callableStatement.setString(1, username);   
     
             callableStatement.execute();
     

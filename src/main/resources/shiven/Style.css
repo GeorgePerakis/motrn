@@ -17,3 +17,8 @@
     -fx-background-color:  #DD4132FF; /* Light red color */
     -fx-text-fill: black;
 }
+
+:focused {
+    -fx-focus-color: red;
+    -fx-faint-focus-color: rgba(255, 0, 0, 0.2); /* Slightly transparent red for faint focus */
+}
