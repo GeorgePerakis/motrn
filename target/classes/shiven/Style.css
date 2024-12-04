@@ -7,3 +7,13 @@
 .button:hover {
     -fx-opacity: 0.5; /* Lower opacity to 50% on hover */
 }
+
+.table-row-cell:selected {
+    -fx-background-color:  #DD4132FF; /* Light red color */
+    -fx-text-fill: black;          /* Text color */
+}
+
+.table-cell:selected {
+    -fx-background-color:  #DD4132FF; /* Light red color */
+    -fx-text-fill: black;
+}
