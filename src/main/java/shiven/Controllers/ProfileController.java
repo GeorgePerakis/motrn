@@ -35,7 +35,7 @@ public class ProfileController {
         UserDAO userDAO = new UserDAO();
         String username = UserSession.getInstance().getUsername();
         userDAO.getUser(username);
-
+        
         ObservableList<User> users = FXCollections.observableArrayList(
                 userDAO.getUser(username)
         );

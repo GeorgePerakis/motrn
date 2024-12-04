@@ -39,7 +39,7 @@ public class Tools {
             return loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
-            return null; // Return null if an exception occurs
+            return null;
         }
     }
 }

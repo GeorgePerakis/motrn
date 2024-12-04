@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -14,6 +15,9 @@ import shiven.Utility.Authorization;
 import shiven.Utility.Tools;
 
 public class RegisterController{
+    @FXML
+    private CheckBox trainerCheck;
+    
     @FXML
     private PasswordField RegisterPassword;
 
@@ -36,7 +40,13 @@ public class RegisterController{
         if (!User_Exists)
         {
             UserDAO userdao = new UserDAO();
-            userdao.addUser(Username, Password);
+            userdao.addUser(Username, Password, trainerCheck.isSelected());
+            
+            if(trainerCheck.isSelected())
+            {
+               userdao.addUser(Username, Password, trainerCheck.isSelected()); 
+            }
+            
             Tools.Make_Success_Alert("Success", "User made successfully", "Redirecting to Login");
 
             try {

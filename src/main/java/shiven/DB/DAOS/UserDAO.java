@@ -31,7 +31,7 @@ public class UserDAO {
 
             ResultSet resultSet = (ResultSet) callableStatement.getObject(4);
             while (resultSet.next()) {
-                User extracted_User = new User(resultSet.getString("USERNAME"), resultSet.getString("SUBSCRIPTION"), resultSet.getString("TRAINER"));
+                User extracted_User = new User(resultSet.getString("USERNAME"), resultSet.getString("SUBSCRIPTION"), resultSet.getString("IS_TRAINER"));
                 return extracted_User;
             }
 
@@ -59,7 +59,7 @@ public class UserDAO {
                 User extractedUser = new User(
                         resultSet.getString("USERNAME"),
                         resultSet.getString("SUBSCRIPTION"),
-                        resultSet.getString("TRAINER")
+                        resultSet.getString("IS_TRAINER")
                 );
                 if (extractedUser != null) {
                     UserList.add(extractedUser);
@@ -72,14 +72,21 @@ public class UserDAO {
         }
     }
 
-    public void addUser(String username, String password) {
-        String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+    public void addUser(String username, String password, boolean isTrainer) {
+        String query = "{CALL dynamic_insert_user(?, ?, ?, ?, ?, ?, ?)}"; 
+        try (Connection connection = DatabaseConnection.getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query)) {
 
-        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            stmt.executeUpdate();
+            callableStatement.setString(1, "userTable"); 
+            callableStatement.setString(2, "name");    
+            callableStatement.setString(3, "pass");     
+            callableStatement.setString(4, "train");    
+            callableStatement.setString(5, username);  
+            callableStatement.setString(6, password);   
+            callableStatement.setInt(7, isTrainer ? 1 : 0); 
+    
+            callableStatement.execute();
+    
         } catch (SQLException e) {
             e.printStackTrace();
         }
