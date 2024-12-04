@@ -6,6 +6,8 @@ public class UserSession {
 
     private String username;
 
+    private boolean is_trainer;
+
     private UserSession() {}
 
     public static UserSession getInstance() {
@@ -21,5 +23,13 @@ public class UserSession {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean getis_trainer() {
+        return is_trainer;
+    }
+
+    public void setis_trainer(boolean is_trainer) {
+        this.is_trainer = is_trainer;
     }
 }

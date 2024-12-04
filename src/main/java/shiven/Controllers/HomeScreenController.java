@@ -20,6 +20,7 @@ public class HomeScreenController {
     private void switchToProfile() throws IOException {
         ProfileController thisProfileController = Tools.loadView("/shiven/ProfileScreen.fxml", borderPane);
         thisProfileController.populateTableView();
+        
     }
     
     @FXML

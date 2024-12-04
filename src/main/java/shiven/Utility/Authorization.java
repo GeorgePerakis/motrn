@@ -12,55 +12,80 @@ public class Authorization {
 
     public static boolean check_username(String username) {
         String query = "{CALL dynamic_auth_user(?, ?)}";
-        try (Connection connection = DatabaseConnection.getConnection(); 
-             CallableStatement callableStatement = connection.prepareCall(query)) {
-    
-            callableStatement.setString(1, username);   
-    
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
+            callableStatement.setString(1, username);
+
             callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
-    
+
             callableStatement.execute();
-    
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
-    
-            while (resultSet.next()) {
-                String retrievedUsername = resultSet.getString("USERNAME");
-    
-                if (retrievedUsername.equals(username)) {
-                    return true; 
+
+            try (ResultSet resultSet = (ResultSet) callableStatement.getObject(2)) {
+                while (resultSet.next()) {
+                    String retrievedUsername = resultSet.getString("USERNAME");
+
+                    if (retrievedUsername.equals(username)) {
+                        return true;
+                    }
                 }
             }
-    
+            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;  
+        return false;
     }
 
-    public static boolean check_password(String username,String password) {
+    public static boolean check_password(String username, String password) {
         String query = "{CALL dynamic_get_pass(?, ?)}";
-        try (Connection connection = DatabaseConnection.getConnection(); 
-             CallableStatement callableStatement = connection.prepareCall(query)) {
-    
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
             callableStatement.setString(1, username);
-    
+
             callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
-    
+
             callableStatement.execute();
-    
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
-    
-            while (resultSet.next()) {
-                String retrievedPassword = resultSet.getString("PASSWORD");
-    
-                if (retrievedPassword.equals(password)) {
-                    return true; 
+
+            try (ResultSet resultSet = (ResultSet) callableStatement.getObject(2)) {
+                while (resultSet.next()) {
+                    String retrievedPassword = resultSet.getString("PASSWORD");
+
+                    if (retrievedPassword.equals(password)) {
+                        return true;
+                    }
                 }
             }
-    
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;  
+        return false;
+    }
+
+    public static boolean check_trainer(String username) {
+        String query = "{CALL dynamic_auth_trainer(?, ?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
+            callableStatement.setString(1, username);
+
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+
+            callableStatement.execute();
+
+            try (ResultSet resultSet = (ResultSet) callableStatement.getObject(2)) {
+                while (resultSet.next()) {
+                    String retrievedUsername = resultSet.getString("USER_ID");
+
+                    if (!retrievedUsername.isBlank()) {
+                        return true;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -41,7 +41,7 @@ public class RegisterController{
         {
             UserDAO userdao = new UserDAO();
             userdao.addUser(Username, Password);
-            
+            userdao.initUserGroup(Username);
             if(trainerCheck.isSelected())
             {
                userdao.addTrainer(Username); 
