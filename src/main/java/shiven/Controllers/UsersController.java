@@ -10,6 +10,11 @@ import shiven.DB.DAOS.UserDAO;
 import shiven.DB.User;
 
 public class UsersController {
+    @FXML
+    private TableView<User> TrainersTable;
+
+    @FXML
+    private TableColumn<User, String> TrainersTableUsername;
 
     @FXML
     private TableView<User> membersTable;
@@ -18,12 +23,10 @@ public class UsersController {
     private TableColumn<User, String> membersNameCol;
 
     @FXML
-    private TableColumn<User, String> membersTrainerCol;
-
-    @FXML
     public void initialize() {
         membersNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        membersTrainerCol.setCellValueFactory(new PropertyValueFactory<>("trainer"));
+
+        TrainersTableUsername.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
 
     public void populateMembersTableView() {
@@ -34,6 +37,13 @@ public class UsersController {
         users.addAll(userDAO.getAllUsers());
 
         membersTable.setItems(users);
+
+        ObservableList<User> trainers = FXCollections.observableArrayList();
+
+        trainers.addAll(userDAO.getAllTrainers());
+
+        TrainersTable.setItems(trainers);
     }
+
 
 }

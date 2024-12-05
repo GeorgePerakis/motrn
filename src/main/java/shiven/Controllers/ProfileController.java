@@ -1,5 +1,9 @@
 package shiven.Controllers;
 
+import java.util.concurrent.Flow;
+
+import org.w3c.dom.UserDataHandler;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,9 +13,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import shiven.App;
 import shiven.DB.DAOS.UserDAO;
 import shiven.DB.User;
+import shiven.DB.Subscription;
 import shiven.Utility.Tools;
 import shiven.Utility.UserSession;
 
@@ -39,22 +45,25 @@ public class ProfileController {
     private TableColumn<User, String> UsernameCol;
 
     @FXML
-    private TableView<String> SubsTable;
+    private TableView<Subscription> SubsTable;
 
     @FXML
-    private TableColumn<String, String> TrainersCol;
+    private TableColumn<Subscription, String> TrainersCol;
 
     @FXML
-    private TableColumn<String, String> crossfitCol;
+    private TableColumn<Subscription, String> crossfitCol;
 
     @FXML
-    private TableColumn<String, String> kickboxingCol;
+    private TableColumn<Subscription, String> kickboxingCol;
 
     @FXML
-    private TableColumn<String, String> pilatesCol;
+    private TableColumn<Subscription, String> pilatesCol;
 
     @FXML
     private TableColumn<String, String> trxCol;
+
+    @FXML
+    private Text textTotal;
 
     @FXML
     public void initialize() {
@@ -63,18 +72,29 @@ public class ProfileController {
         crossfitCol.setCellValueFactory(new PropertyValueFactory<>("crossfit"));
         kickboxingCol.setCellValueFactory(new PropertyValueFactory<>("kickboxing"));
         pilatesCol.setCellValueFactory(new PropertyValueFactory<>("pilates"));
+        textTotal.setText("Your total amount is: " + getTotal().toString()+"€");
     }
 
     public void populateTableView() {
         UserDAO userDAO = new UserDAO();
         String username = UserSession.getInstance().getUsername();
-        userDAO.getUser(username);
-        
+
         ObservableList<User> users = FXCollections.observableArrayList(
                 userDAO.getUser(username)
         );
 
         UserTable.setItems(users);
+    }
+
+    public void populateSubTableView() {
+        UserDAO userDAO = new UserDAO();
+        String username = UserSession.getInstance().getUsername();
+
+        ObservableList<Subscription> subscriptions = FXCollections.observableArrayList(
+                userDAO.getUserGroup(username)
+        );
+
+        SubsTable.setItems(subscriptions);
     }
 
     @FXML
@@ -87,21 +107,34 @@ public class ProfileController {
         boolean pilates = pilates_button.isSelected();
         String username = UserSession.getInstance().getUsername();
 
-        userDAO.editUserGroup(username,trx,crossfit,kickboxing,pilates);
+        userDAO.editUserGroup(username, trx, crossfit, kickboxing, pilates);
 
-        Tools.Make_Success_Alert("Success", "User edited successfully", "Changed subscription values");
+        Tools.Make_Success_Alert("Success", "User edited successfully", "Redirecting to HomeScreen");
+
+        try {
+            App.setRoot("HomeScreen");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void deleteUser(ActionEvent event) {
         UserDAO userDAO = new UserDAO();
         String username = UserSession.getInstance().getUsername();
+        userDAO.addDeletedUser(username);
         userDAO.deleteUser(username);
-        Tools.Make_Success_Alert("Success","User Deleted successfully" ,"Redirecting to login screen" );
+        Tools.Make_Success_Alert("Success", "User Deleted successfully", "Redirecting to login screen");
         try {
-                App.setRoot("Register");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            App.setRoot("Register");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    Integer getTotal() {
+        UserDAO userDAO = new UserDAO();
+        String username = UserSession.getInstance().getUsername();
+        return userDAO.getUserTotal(username);
     }
 }

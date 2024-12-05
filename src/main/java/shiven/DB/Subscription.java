@@ -2,65 +2,54 @@ package shiven.DB;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Subscription {
-    private final IntegerProperty trx;
-    private final IntegerProperty crossfit;
-    private final IntegerProperty kickboxing;
-    private final IntegerProperty pilates;
+    private final StringProperty trx;
+    private final StringProperty crossfit;
+    private final StringProperty kickboxing;
+    private final StringProperty pilates;
 
     public Subscription(int trx, int crossfit, int kickboxing, int pilates) {
-        this.trx = new SimpleIntegerProperty(trx);
-        this.crossfit = new SimpleIntegerProperty(crossfit);
-        this.kickboxing = new SimpleIntegerProperty(kickboxing);
-        this.pilates = new SimpleIntegerProperty(pilates);
+        this.trx = new SimpleStringProperty(trx == 1 ? "Yes" : "No");
+        this.crossfit = new SimpleStringProperty(crossfit == 1 ? "Yes" : "No");
+        this.kickboxing = new SimpleStringProperty(kickboxing == 1 ? "Yes" : "No");
+        this.pilates = new SimpleStringProperty(pilates == 1 ? "Yes" : "No");
     }
 
-    public int getTrx() {
+    // Getters
+    public String getTrx() {
         return trx.get();
     }
 
-    public int getCrossfit() {
+    public String getCrossfit() {
         return crossfit.get();
     }
 
-    public int getKickboxing() {
+    public String getKickboxing() {
         return kickboxing.get();
     }
 
-    public int getPilates() {
+    public String getPilates() {
         return pilates.get();
     }
 
+    // Setters
     public void setTrx(int trx) {
-        this.trx.set(trx);
+        this.trx.set(trx == 1 ? "Yes" : "No");
     }
 
     public void setCrossfit(int crossfit) {
-        this.crossfit.set(crossfit);
+        this.crossfit.set(crossfit == 1 ? "Yes" : "No");
     }
 
     public void setKickboxing(int kickboxing) {
-        this.kickboxing.set(kickboxing);
+        this.kickboxing.set(kickboxing == 1 ? "Yes" : "No");
     }
 
     public void setPilates(int pilates) {
-        this.pilates.set(pilates);
+        this.pilates.set(pilates == 1 ? "Yes" : "No");
     }
 
-    public IntegerProperty trxProperty() {
-        return trx;
-    }
-
-    public IntegerProperty crossfitProperty() {
-        return crossfit;
-    }
-
-    public IntegerProperty kickboxingProperty() {
-        return kickboxing;
-    }
-
-    public IntegerProperty pilatesProperty() {
-        return pilates;
-    }
 }

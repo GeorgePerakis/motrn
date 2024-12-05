@@ -2,13 +2,11 @@ package shiven.DB.DAOS;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Types;
-import java.util.concurrent.Flow;
 
 import oracle.jdbc.OracleTypes;
 import shiven.DB.DatabaseConnection;
@@ -81,6 +79,18 @@ public class UserDAO {
         }
     }
 
+    public void addDeletedUser(String username) {
+        String query = "{CALL dynamic_insert_deleted_user(?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setString(1, username);
+
+            callableStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void deleteUser(String username) {
         String query = "{CALL dynamic_delete_user(?)}";
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
@@ -137,7 +147,7 @@ public class UserDAO {
     }
 
     public Subscription getUserGroup(String username) {
-        String query = "{CALL dynamic_get_user_group(?)}";
+        String query = "{CALL dynamic_get_user_group(?, ?, ?, ?, ?)}";
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
 
             callableStatement.setString(1, username);
@@ -166,5 +176,53 @@ public class UserDAO {
 
         
         return  null;
+    }
+
+    public int getUserTotal(String username) {
+        String query = "{CALL dynamic_get_user_total(?, ?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
+            callableStatement.setString(1, username);
+
+            callableStatement.registerOutParameter(2, Types.INTEGER); 
+
+            callableStatement.execute();
+
+            int total = callableStatement.getInt(2);
+            
+            return  total;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    public List<User> getAllTrainers() {
+        String query = "{CALL dynamic_get_all_trainers(?)}";
+        List<User> TrainerList = new ArrayList<User>();
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+
+            callableStatement.execute();
+
+            try (ResultSet resultSet = (ResultSet) callableStatement.getObject(1)) {
+                while (resultSet.next()) {
+                    User extractedUser = new User(
+                            resultSet.getString("USERNAME"), "", ""
+                    );
+                    if (extractedUser != null) {
+                        TrainerList.add(extractedUser);
+                    }
+                }
+                return TrainerList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

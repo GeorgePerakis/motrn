@@ -19,9 +19,25 @@
                   <TableView fx:id="UserTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" stylesheets="@Style.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="UsernameCol" prefWidth="193.59998166561127" text="Username" />
-                        <TableColumn fx:id="TrainersCol" prefWidth="245.60000610351562" text="Trainer" />
                      </columns>
                   </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Subscriptions">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
+               <children>
+                  <TableView fx:id="SubsTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" stylesheets="@Style.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="trxCol" prefWidth="193.59998166561127" text="TRX" />
+                        <TableColumn fx:id="crossfitCol" prefWidth="244.79998779296875" text="CROSSFIT" />
+                        <TableColumn fx:id="kickboxingCol" prefWidth="245.60000610351562" text="KICKBOXING" />
+                        <TableColumn fx:id="pilatesCol" prefWidth="245.60000610351562" text="PILATES" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
                </children>
             </AnchorPane>
          </content>
@@ -58,26 +74,14 @@
                   </Text>
                   <Button fx:id="apply_button" layoutX="754.0" layoutY="111.0" mnemonicParsing="false" onAction="#editUserGroup" prefHeight="23.0" prefWidth="118.0" text="Apply" />
                   <Button layoutX="245.0" layoutY="209.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="23.0" prefWidth="118.0" text="Delete" />
+                  <Text fx:id="textTotal" fill="#9e1030" layoutX="434.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Total is: 145" textAlignment="CENTER" wrappingWidth="425.073486328125">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
         </content>
-      </Tab>
-      <Tab text="Subscriptions">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="785.0">
-               <children>
-                  <TableView fx:id="SubsTable" layoutX="14.0" prefHeight="612.0" prefWidth="786.0" style="-fx-background-color: #FCF6F5FF;" stylesheets="@Style.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
-                     <columns>
-                        <TableColumn fx:id="trxCol" prefWidth="193.59998166561127" text="TRX" />
-                        <TableColumn fx:id="crossfitCol" prefWidth="244.79998779296875" text="CROSSFIT" />
-                        <TableColumn fx:id="kickboxingCol" prefWidth="245.60000610351562" text="KICKBOXING" />
-                        <TableColumn fx:id="pilatesCol" prefWidth="245.60000610351562" text="PILATES" />
-                     </columns>
-                  </TableView>
-                  <Button layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="Pay Subscription" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="20.0" />
-               </children>
-            </AnchorPane>
-         </content>
       </Tab>
    </tabs>
 </TabPane>
