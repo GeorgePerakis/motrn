@@ -1,7 +1,7 @@
-shiven\Utility\Authorization.class
 shiven\Controllers\LoginController.class
-shiven\Controllers\RegisterController.class
-shiven\DB\DAOS\UserDAO.class
 shiven\App.class
 module-info.class
 shiven\DB\DatabaseConnection.class
+shiven\Utility\Authorization.class
+shiven\Controllers\RegisterController.class
+shiven\DB\DAOS\UserDAO.class

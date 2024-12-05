@@ -9,6 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import shiven.App;
 import shiven.DB.DAOS.UserDAO;
 import shiven.DB.User;
 import shiven.Utility.Tools;
@@ -38,8 +39,30 @@ public class ProfileController {
     private TableColumn<User, String> UsernameCol;
 
     @FXML
+    private TableView<String> SubsTable;
+
+    @FXML
+    private TableColumn<String, String> TrainersCol;
+
+    @FXML
+    private TableColumn<String, String> crossfitCol;
+
+    @FXML
+    private TableColumn<String, String> kickboxingCol;
+
+    @FXML
+    private TableColumn<String, String> pilatesCol;
+
+    @FXML
+    private TableColumn<String, String> trxCol;
+
+    @FXML
     public void initialize() {
         UsernameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        trxCol.setCellValueFactory(new PropertyValueFactory<>("trx"));
+        crossfitCol.setCellValueFactory(new PropertyValueFactory<>("crossfit"));
+        kickboxingCol.setCellValueFactory(new PropertyValueFactory<>("kickboxing"));
+        pilatesCol.setCellValueFactory(new PropertyValueFactory<>("pilates"));
     }
 
     public void populateTableView() {
@@ -69,4 +92,16 @@ public class ProfileController {
         Tools.Make_Success_Alert("Success", "User edited successfully", "Changed subscription values");
     }
 
+    @FXML
+    void deleteUser(ActionEvent event) {
+        UserDAO userDAO = new UserDAO();
+        String username = UserSession.getInstance().getUsername();
+        userDAO.deleteUser(username);
+        Tools.Make_Success_Alert("Success","User Deleted successfully" ,"Redirecting to login screen" );
+        try {
+                App.setRoot("Register");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
 }

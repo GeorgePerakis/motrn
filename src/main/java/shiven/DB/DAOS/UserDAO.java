@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Types;
+import java.util.concurrent.Flow;
 
 import oracle.jdbc.OracleTypes;
 import shiven.DB.DatabaseConnection;
+import shiven.DB.Subscription;
 import shiven.DB.User;
 
 public class UserDAO {
@@ -78,6 +81,18 @@ public class UserDAO {
         }
     }
 
+    public void deleteUser(String username) {
+        String query = "{CALL dynamic_delete_user(?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setString(1, username);
+
+            callableStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addTrainer(String username) {
         String query = "{CALL dynamic_insert_trainer(?)}";
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
@@ -104,7 +119,7 @@ public class UserDAO {
         }
     }
 
-    public void editUserGroup(String username, boolean trx,boolean crossfit,boolean kickboxing,boolean pilates) {
+    public void editUserGroup(String username, boolean trx, boolean crossfit, boolean kickboxing, boolean pilates) {
         String query = "{CALL dynamic_edit_user_group(?,?,?,?,?)}";
         try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
 
@@ -119,5 +134,37 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Subscription getUserGroup(String username) {
+        String query = "{CALL dynamic_get_user_group(?)}";
+        try (Connection connection = DatabaseConnection.getConnection(); CallableStatement callableStatement = connection.prepareCall(query)) {
+
+            callableStatement.setString(1, username);
+
+            callableStatement.registerOutParameter(2, Types.INTEGER); 
+            callableStatement.registerOutParameter(3, Types.INTEGER); 
+            callableStatement.registerOutParameter(4, Types.INTEGER); 
+            callableStatement.registerOutParameter(5, Types.INTEGER); 
+
+            callableStatement.execute();
+
+            int trx = callableStatement.getInt(2);
+            int crossfit = callableStatement.getInt(3);
+            int kickboxing = callableStatement.getInt(4);
+            int pilates = callableStatement.getInt(5);
+
+
+            Subscription user_sub = new Subscription(trx, crossfit, kickboxing, pilates);
+
+            
+            return  user_sub;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        
+        return  null;
     }
 }
