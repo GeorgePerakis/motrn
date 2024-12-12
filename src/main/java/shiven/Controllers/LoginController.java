@@ -15,9 +15,6 @@ import shiven.Utility.UserSession;
 public class LoginController {
 
     @FXML
-    private CheckBox trainerCheck;
-
-    @FXML
     private PasswordField LoginPassword;
 
     @FXML
@@ -35,16 +32,16 @@ public class LoginController {
 
         boolean User_Exists = Authorization.check_username(Username);
         boolean Pass_Exists = Authorization.check_password(Username, Password);
-        boolean is_trainer = Authorization.check_trainer(Username);
+        // boolean is_trainer = Authorization.check_trainer(Username);
 
         if (User_Exists) {
             if (Pass_Exists) {
                 Tools.Make_Success_Alert("Success", "User logged in successfully", "Redirecting to Home Page");
                 UserSession.getInstance().setUsername(Username);
-                if(is_trainer)
-                {
-                    UserSession.getInstance().setis_trainer(is_trainer);
-                }
+                // if(is_trainer)
+                // {
+                //     UserSession.getInstance().setis_trainer(is_trainer);
+                // }
                 try {
                     App.setRoot("HomeScreen");
                 } catch (Exception e) {
